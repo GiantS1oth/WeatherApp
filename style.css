@@ -1,0 +1,47 @@
+
+body {
+    height: 100vh;
+    display: flex;
+    background: #fff;
+}
+
+
+.weather-card {
+    display: flex;
+    box-sizing: border-box;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    background: lightblue;
+}
+
+.mask{
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+    position: fixed;
+    top: 0 ;
+    z-index: 10;
+    transition: 1.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    margin: auto;
+    width: 75px;
+    height: 75px;
+    border:10px solid rgb(123, 179, 206);
+    border-radius: 50%;
+    border-left-color: rgb(255, 144, 21);
+    animation: loader 1.3s linear infinite;
+}
+@keyframes loader {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.hide {
+    display: none;
+}
