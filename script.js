@@ -3,8 +3,8 @@
 
 //https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true
 
-const loader = document.querySelector('#loader')
-let mask = document.querySelector('#mask')
+// const loader = document.querySelector('#loader')
+// let mask = document.querySelector('#mask')
 const city = document.querySelector('#city')
 const temperature = document.querySelector('#temperature')
 const windSpeed = document.querySelector('#windspeed')
@@ -24,13 +24,14 @@ async function getWeather() {
         const weatherData = await weatherRes.json()
 
         loader.classList.add('hide')
-
+        mask.classList.add('hide')
         const currentWeather = weatherData.current_weather;
         const {temperature, windspeed, winddirection, weathercode} = currentWeather
 
-        // console.log(temperature, windspeed, winddirection, weathercode)
-
         const currentWeatherUnits = weatherData.current_weather_units;
+
+
+
 
         function decodeWeatherCode(code) {
                 switch (code) {
@@ -43,6 +44,7 @@ async function getWeather() {
                         case 3:
                                 return 'Overcast';
                         case 45:
+                                return "Overcast"
                         case 48:
                                 return 'Fog and depositing rime fog';
                         case 51:
@@ -98,15 +100,16 @@ const weatherDecode = decodeWeatherCode(weathercode);
 
 
 document.getElementById('city').textContent = city;
-document.getElementById('temperature').textContent = temperature;
-document.getElementById('windspeed').textContent = windspeed;
-document.getElementById('winddirection').textContent = winddirection;
+document.getElementById('temperature').textContent = temperature + " " + currentWeatherUnits.temperature;
+document.getElementById('windspeed').textContent = windspeed + " " +  currentWeatherUnits.windspeed;
+document.getElementById('winddirection').textContent = winddirection + " " +  + currentWeatherUnits.winddirection;
 document.getElementById('weatherdescription').textContent = weatherDecode;
 
 
         setTimeout(() => {
                 loader.classList.add('hide');
         }, 1500);
+
 
 
 
